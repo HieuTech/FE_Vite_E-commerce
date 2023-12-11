@@ -1,19 +1,17 @@
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { myAction } from "./store/actions/myActions";
+// import { Link } from "react-router-dom";
+import Header from "../../Header/Header";
+import Product from "./Product/";
+import Carousel from "./Carousel_Home";
+import SocialMedia from "./SocialMedia";
+import Footer from "../../Footer/Footer";
 const Home = () => {
-
-
-
-
   return (
     <div>
-      <Link to="/signup">Sign Up</Link>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/product">Product</Link>
-      <Link to="/cart">Cart</Link>
-
-      
+      <Header />
+      <Carousel/>
+      <Product/>
+      <SocialMedia/>
+      <Footer/>
     </div>
   );
 };
