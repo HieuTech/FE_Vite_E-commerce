@@ -6,7 +6,8 @@ import Product from "./components/pages/Product/Product";
 import Cart from "./components/pages/Cart/Cart";
 import Orders from "./components/pages/Orders/Orders";
 import Order_Received from "./components/pages/Order-Received/OrderReceived";
-
+import ChatPlugin from "./components/ChatPlugin/ChatPlugin";
+ChatPlugin
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>
+      <ChatPlugin/>
     </Router>
   );
 }

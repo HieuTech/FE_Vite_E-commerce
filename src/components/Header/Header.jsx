@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss"; // Import CSS file
+import { useSelector } from "react-redux";
+import "font-awesome/css/font-awesome.min.css";
+
 const Header = () => {
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
   return (
     <header>
       <div className="header__container">
@@ -39,7 +44,11 @@ const Header = () => {
               <Link to="/signup">Sign Up</Link>
             </li>
             <li className="header__user-item">
-              <Link to="/cart">Cart</Link>
+              <Link to="/cart">
+                <i className="fa fa-shopping-cart "></i>
+                Cart
+                <span className="totalQuantity">{totalQuantity}</span>
+              </Link>
             </li>
           </ul>
         </div>
