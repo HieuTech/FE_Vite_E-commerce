@@ -1,8 +1,9 @@
 import React from "react";
-import "./Product.scss"; // Make sure to create an accompanying SCSS file for styling
+import "./Product.scss"; 
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../features/cart/cartSlice";
-// Dummy data for the products
+import { Link } from "react-router-dom";
+
 const products = [
   {
     id: 1,
@@ -55,14 +56,11 @@ const products = [
 ];
 
 const ProductPage = () => {
-  
   const dispatch = useDispatch();
 
   const handleAddToCart = (product) => {
     console.log("Product added to cart:", product);
-        dispatch(addItemToCart(product));
-
-
+    dispatch(addItemToCart(product));
   };
 
   return (
@@ -78,6 +76,9 @@ const ProductPage = () => {
           >
             Add to Cart
           </button>
+          <Link to='/cart'>
+            <button className="add-to-cart-button">Buy Now</button>
+          </Link>
         </div>
       ))}
     </div>

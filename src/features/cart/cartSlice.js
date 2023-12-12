@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Khởi tạo trạng thái ban đầu cho giỏ hàng
-const initialState = {
-  items: [], // Mảng để lưu trữ các sản phẩm trong giỏ hàng
-  totalQuantity: 0, // Tổng số lượng sản phẩm trong giỏ hàng
-  totalPrice: 0, // Tổng giá trị giỏ hàng
+const initialState = JSON.parse(localStorage.getItem("cart")) || {
+  items: [],
+  totalQuantity: 0,
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({
@@ -22,11 +22,12 @@ const cartSlice = createSlice({
         state.items.push({ ...newItem, quantity: 1 });
         state.totalQuantity++;
         state.totalPrice += newItem.price;
+        localStorage.setItem("cart", JSON.stringify(state)); // Lưu trạng thái vào localStorage
       } else {
-        // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
         existingItem.quantity++;
         state.totalQuantity++;
         state.totalPrice += newItem.price;
+        localStorage.setItem("cart", JSON.stringify(state)); // Lưu trạng thái vào localStorage
       }
     },
 
@@ -40,14 +41,17 @@ const cartSlice = createSlice({
           existingItem.quantity--;
           state.totalQuantity--;
           state.totalPrice -= existingItem.price;
+          localStorage.setItem("cart", JSON.stringify(state)); // Lưu trạng thái vào localStorage
         } else {
           // Xóa sản phẩm khỏi giỏ hàng nếu số lượng là 1
           state.items = state.items.filter((item) => item.id !== id);
           state.totalQuantity--;
           state.totalPrice -= existingItem.price;
+          localStorage.setItem("cart", JSON.stringify(state)); // Lưu trạng thái vào localStorage
         }
       }
     },
+
 
     // Các reducers khác có thể được thêm ở đây
   },

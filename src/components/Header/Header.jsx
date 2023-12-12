@@ -1,12 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss"; // Import CSS file
 import { useSelector } from "react-redux";
+
 import "font-awesome/css/font-awesome.min.css";
 
 const Header = () => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const navigate = useNavigate()
+  const storedUser = localStorage.getItem("user");
+  const userEmail = storedUser ? JSON.parse(storedUser).email : null;
 
+  const handleSignOut = () => {
+    localStorage.removeItem("user");
+    navigate("/signin");
+  };
   return (
     <header>
       <div className="header__container">
@@ -49,6 +57,20 @@ const Header = () => {
                 Cart
                 <span className="totalQuantity">{totalQuantity}</span>
               </Link>
+            </li>
+            <li className="header__user-item-user">
+              <img
+                src="https://cdn-icons-png.flaticon.com/128/6997/6997662.png"
+                alt="user"
+                className="header__user-item-img"
+              />
+              <span>{userEmail}</span>
+              <div className="header__user-popup">
+                <Link to="/user">
+                  <p className="header__user-popup-title">Thông tin User</p>
+                </Link>
+                <button onClick={handleSignOut}>Đăng xuất</button>
+              </div>
             </li>
           </ul>
         </div>

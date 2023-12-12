@@ -9,8 +9,8 @@ const  Cart= ()=> {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const cartItems = useSelector((state) => state.cart.items);
-
   const dispatch = useDispatch();
+
 
   const handleRemoveItem = (itemId) => {
    console.log(itemId);
@@ -44,8 +44,8 @@ const  Cart= ()=> {
       <p className="totalPrice">Total Price: ${totalPrice}</p>
       <p className="totalQuantity">Total Quantity: {totalQuantity}</p>
 
-      <Link to="/orders" className="go-to-orders-link">
-        Go to orders
+      <Link to="/checkout" className="go-to-orders-link">
+        Mua Hàng
       </Link>
     </div>
   );

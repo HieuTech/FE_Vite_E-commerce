@@ -1,20 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./SignIn.scss"; // Import file CSS
+import { signIn } from "../../../features/signUp/authSlice";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
+  const authState = useSelector((state) => state.auth);
+
+    const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    dispatch(signIn({ email, password }));
+   
+  };
+    useEffect(() => {
+      if (authState.user && !authState.error && !loggedIn) {
+        setLoggedIn(true);
+        navigate("/");
+      }
+    }, [authState, loggedIn, navigate]);
 
   return (
     <div className="signin-container">
       <h2>Đăng nhập</h2>
-      <form>
+      <form onSubmit={handleSignIn}>
+        {error && <p>{error}</p>}
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
-            type="email"
+            type="text"
             id="email"
             name="email"
             value={email}
@@ -25,7 +46,7 @@ const SignIn = () => {
           <label htmlFor="password">Mật khẩu:</label>
           <input
             type="password"
-            id="password"
+            id="text"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -35,9 +56,7 @@ const SignIn = () => {
           Đăng nhập
         </button>
       </form>
-      <Link to="/">
-        Go To Home Page
-      </Link>
+      <Link to="/signup"> You have no account -- Sign Up Now</Link>
     </div>
   );
 };

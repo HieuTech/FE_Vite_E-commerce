@@ -1,20 +1,32 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../../features/signUp/authSlice";
 
 function SignUp() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const user = useSelector((state) => state.auth.user);
+  const error = useSelector((state) => state.auth.error);
+  console.log(email, password);
+  const handleSignUp = (e) => {
+    // Gọi reducer signUp từ authSlice
+    e.preventDefault();
 
-  const handleSignUp = async (event) => {
-    event.preventDefault();
-    setError("");
+    dispatch(signUp({ email, password }));
 
-    // Here you would normally handle the sign-up logic
-    // Since you're not using Firebase, you can implement another method
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/"); // Chuyển hướng sau khi đăng ký thành công
+    }
+  }, [user, navigate]);
+ 
   return (
     <div className="sign-up-container">
       <h2>Sign Up</h2>
@@ -23,21 +35,19 @@ function SignUp() {
         <div className="form-group">
           <label>Email:</label>
           <input
-            type="email"
+            type="text"
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
         <div className="form-group">
           <label>Password:</label>
           <input
-            type="password"
+            type="text"
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </div>
         <button type="submit" className="submit-button">
