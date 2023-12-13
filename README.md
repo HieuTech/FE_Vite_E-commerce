@@ -4,3 +4,16 @@ React Vite
 Chat facebook
 Thanh toán online
 
+lazyload.
+
+
+
+react lazy suspense
+
+toastify
+
+react hook form? formik and yup(validate).
+
+atomic design frontend
+
+quên mật khẩu.
