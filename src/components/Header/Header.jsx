@@ -24,7 +24,7 @@ const Header = () => {
   };
   return (
     <header>
-    <h1>hello Hieu</h1>
+      <h2>hello hieu san</h2>
       <div className="header__container">
         <div className="header__logo">
           <img
