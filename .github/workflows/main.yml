@@ -1,4 +1,4 @@
-name:Deploy
+name: Deploy
 on:
   push:
     branches: [master]
@@ -6,16 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    name: 
-    uses: appleboy/ssh-action@master
-    with:
-    host:${{ secrets.HOST}}
-    username: ${{secrets.USERNAME}}
-    password: ${{secrets.PASSWORD}}
-    port:22
-    script:
-    cd /var/www/FE_Vite_E-commerce/dist
-    git pull
+    - name: kết nối ssh linux -> và deploy
+      uses: appleboy/ssh-action@master
+      with:
+       host: ${{ secrets.HOST}}
+       username: ${{secrets.USERNAME}}
+       password: ${{secrets.PASSWORD}}
+       port: 22
+       script: |
+        cd /var/www/FE_Vite_E-commerce/dist
+        git pull
 
 
     
