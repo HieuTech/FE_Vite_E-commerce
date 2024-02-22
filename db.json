@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "Laptop",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "title": "Mobile",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "title": "Desktop",
+      "status": "inactive"
+    },
+    {
+      "id": 4,
+      "title": "Other",
+      "status": "inactive"
+    },{
+      "id": 5,
+      "title": "Other",
+      "status": "inactive"
+    }
+  ]
+}

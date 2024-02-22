@@ -3,14 +3,17 @@
 /* Header container styling */
 .header__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  background-color: rgb(252, 202, 109);
+  background-color: rgb(218, 171, 84);
   width: 100%;
   border-radius: 10px;
-  position: fixed;
+  // position: fixed;
   z-index: 1;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Đổ bóng header */
+}
+.header_img {
+  width: 200px;
 }
 
 /* Logo styling */
@@ -50,7 +53,7 @@
 
 .header__user-item a {
   text-decoration: none;
-  color: white;
+  color: rgb(239, 225, 225);
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -81,14 +84,6 @@
 }
 
 /* Search input and button styling */
-.header__search input[type="text"] {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  width: 200px; /* Điều chỉnh chiều rộng ô tìm kiếm */
-  background-color: #f1f1f1; /* Màu nền ô tìm kiếm */
-}
 
 .header__search button {
   padding: 10px 20px;
@@ -149,21 +144,22 @@
   /* Các thiết lập khác cần thiết cho giao diện tablet */
 }
 
-
 .header__user-popup {
   display: none;
   position: absolute;
   background-color: #fff;
   border: 1px solid #ddd;
-  padding: 30px;
-  height: 100px;
+  padding: 20px;
+  height: 80px;
   border-radius: 10px;
+
   transition: opacity 0.5s ease-in-out;
 }
 
 .header__user-item-user:hover .header__user-popup {
   display: flex;
   flex-direction: column;
+  z-index: 1000;
 }
 
 .header__user-popup-title:hover {
@@ -178,4 +174,3 @@
   border: none;
   cursor: pointer;
 }
-
